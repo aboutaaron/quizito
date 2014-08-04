@@ -64,14 +64,24 @@ NewsQuiz.prototype = {
             that.loadQuestion(that.questions[that.count]);
             that.count++;
             that.state = 'active';
+            that._clearRadio();
 
         } else {
             // Load results page
             that.state = 'finished';
-            that.buildTemplate('<div class="quiz-body" id="results"><div class="quiz-question">Results</div><div class="quiz-results-body"></div><a href="#" class="quiz-retry">Try again</a></div>');
+            that.buildTemplate('<div class="quiz-body" id="results"><div class="quiz-question">Done!</div><div class="quiz-results-body"></div><a href="#" class="quiz-retry">Try again</a></div>');
 
             that.reset();
         }
+    },
+    _clearRadio: function () {
+        var radios = this.container.querySelectorAll('input');
+        [].forEach.call(
+            radios,
+            function (radio) {
+                radio.checked = false;
+            }
+        );
     },
     on: function (eventName, eventHandler) {
         // Event for when radio buttons change

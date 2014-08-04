@@ -78,7 +78,7 @@ module.exports = function (grunt) {
                 tasks: ['jshint:test']
             },
             html: {
-                files: ['app/*.html'],
+                files: ['example/*.html'],
                 options: {
                     livereload: true
                 }
