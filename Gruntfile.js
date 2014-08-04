@@ -68,17 +68,28 @@ module.exports = function (grunt) {
             },
             src: {
                 files: '<%= jshint.src.src %>',
-                tasks: ['jshint:src']
+                tasks: ['jshint:src'],
+                options: {
+                    livereload: true
+                }
             },
             test: {
                 files: '<%= jshint.test.src %>',
                 tasks: ['jshint:test']
+            },
+            html: {
+                files: ['app/*.html'],
+                options: {
+                    livereload: true
+                }
             }
         },
         connect: {
             server: {
                 options: {
                     hostname: '*',
+                    open: true,
+                    livereload: 35729,
                     port: 9000
                 }
             }
