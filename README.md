@@ -85,11 +85,11 @@ quiz.on('someEventName', function (event) { /* your custom event here */ })
 ```
 
 ### Watching for state
-newsquiz.js uses an implementation of [Object.watch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/watch) to monitor various object properties. This is primarily used to watch the value of the "state" property that tracks where the user is in the question. `NewsQuiz.state` will hold the following values:
+`newsquiz.js` uses an implementation of [Object.watch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/watch) to monitor various object properties. This is primarily used to watch the "state" of the quiz. `NewsQuiz.state` will hold the following values:
 
-    start: for when the quiz is first initialized
-    active: state for when the quiz is being taken
-    finished: fires after the the last question is answer and the results are displayed
+- **'start'**: for when the quiz is first initialized
+- **'active'**: state for when the quiz is being taken
+- **'finished'**: fires after the the last question is answer and the results are displayed
 
 
 So, if you wanted to do something based on the various quiz states, you'd write the following:
@@ -104,7 +104,7 @@ quiz.watch('state', function () {
     }
 
     if (this.state === 'finished') {
-        /* Do something for when the quiz is done */
+        /* Do something when the quiz is finished */
     }
 });
 ```
@@ -113,3 +113,29 @@ You can also watch `NewsQuiz.count` whuch tracks what question is active
 ```js
 quiz.watch('count', function () { /* Do something when count changes */ });
 ```
+
+## Contributing
+Want to add or feature of need something fixed? Open an [issue](https://github.com/cirlabs/newsquiz/issues).
+
+## License
+The MIT License (MIT)
+
+Copyright (c) [2014] [The Center for Investigative Reporting]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
