@@ -1,0 +1,13 @@
+{
+  "name": "newsquiz",
+  "version": "0.0.1",
+  "description": "Create easy, inline, binary based quizzes for your website",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aaron Williams",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
+}
