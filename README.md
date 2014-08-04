@@ -63,7 +63,12 @@ Don't like this format? Pass `NewsQuiz.buildTemplate()` a string of your preferr
 
 `state` (**property**): 'start', 'active', 'finished'. Tells you which part of the quiz you're in.
 
+`init` (**function**): boot your quiz
+
+`reset` (**function**): Starts your quiz from the beginning
+
 `buildTemplate` (**function**): Take a *string* representation of HTML and pass to the selector
+
 
 ## Events
 ```js
