@@ -55,14 +55,20 @@ Don't like this format? Pass `NewsQuiz.buildTemplate()` a string of your preferr
 ## API
 #### properties
 `container`: DOM node that contains the quiz
+
 `questions`: Array of question objects used for the quiz
+
 `answers`: Similar to **questions** but contains the answers. Updates dynamically.
+
 `count`: Integer representing the current question number. Starts at 1
+
 `state`: 'start', 'active', 'finished'. Tells you which part of the quiz you're in.
 
 #### functions
 `init()`: boot your quiz
+
 `reset()`: Starts your quiz from the beginning
+
 `buildTemplate()`: Take a *string* representation of HTML and pass to the selector
 
 
