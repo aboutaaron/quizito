@@ -53,21 +53,17 @@ The default HTML looks like this:
 Don't like this format? Pass `NewsQuiz.buildTemplate()` a string of your preferred HTML and go from there (though you'll definitely need to modify the library a bit. Working on making this a little easier in the future).
 
 ## API
-`container` (**property**): DOM node that contains the quiz
+#### properties
+`container`: DOM node that contains the quiz
+`questions`: Array of question objects used for the quiz
+`answers`: Similar to **questions** but contains the answers. Updates dynamically.
+`count`: Integer representing the current question number. Starts at 1
+`state`: 'start', 'active', 'finished'. Tells you which part of the quiz you're in.
 
-`questions` (**property**): Array of question objects used for the quiz
-
-`answers` (**property**): Similar to **questions** but contains the answers. Updates dynamically.
-
-`count` (**property**): Integer representing the current question number. Starts at 1
-
-`state` (**property**): 'start', 'active', 'finished'. Tells you which part of the quiz you're in.
-
-`init` (**function**): boot your quiz
-
-`reset` (**function**): Starts your quiz from the beginning
-
-`buildTemplate` (**function**): Take a *string* representation of HTML and pass to the selector
+#### functions
+`init()`: boot your quiz
+`reset()`: Starts your quiz from the beginning
+`buildTemplate()`: Take a *string* representation of HTML and pass to the selector
 
 
 ## Events
