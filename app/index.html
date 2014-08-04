@@ -38,28 +38,17 @@
 
       <div id="quiz"></div>
 
-<!--       <div class="quiz">
-
-        <div class="quiz-body">
-
-          <div class="quiz-question">Have you done x?</div>
-
-          <div class="quiz-answer">
-            <input type="radio" name="quiz-radio" id="quiz-yes" value="yes"> Yes
-            <input type="radio" name="quiz-radio" id="quiz-no" value="no"> No
-          </div>
-
-          <div class="quiz-controls">
-            <a href="#" class="quiz-prev">prev</a>
-            <a href="#" class="quiz-next">next</a>
-          </div>
-
-        </div>
-
-      </div> -->
-
     </div><!-- /.container -->
 
     <script src="../src/newsquiz.js"></script>
+
+    <script>
+      var questions = [
+        { question: 'Have you ever been Emeryville?' },
+        { question: 'Do you like potato chips?' },
+        { question: 'Would you vote to split California into six states?' }
+      ],
+      quiz = new NewsQuiz('#quiz', questions);
+    </script>
   </body>
 </html>
