@@ -1,6 +1,6 @@
-/*! newsquiz - v0.0.1 - 2014-08-04
+/*! quizito - v0.0.1 - 2014-08-04
 * Copyright (c) 2014 ; Licensed MIT */
-function NewsQuiz (container, questions) {
+function Quizito (container, questions) {
     'use strict';
 
     this.container = document.querySelector(container);
@@ -10,7 +10,7 @@ function NewsQuiz (container, questions) {
     this.init();
 }
 
-NewsQuiz.prototype = {
+Quizito.prototype = {
     init: function () {
         var that = this;
 
