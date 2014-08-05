@@ -83,8 +83,6 @@ if (!Object.prototype.unwatch) {
     this.container = document.querySelector(container);
     // Store questions to object
     this.questions = questions;
-    // Kickoff
-    this.init();
 }
 
 Quizito.prototype = {

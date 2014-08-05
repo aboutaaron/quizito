@@ -28,6 +28,11 @@ Quizito takes an array of question objects and a selector to inject the quiz int
 var quiz = new Quizito('#quiz', questions);
 ```
 
+After that, start the quiz
+```js
+quiz.init();
+```
+
 Told you. Easy.
 
 ## Customization
