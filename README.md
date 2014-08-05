@@ -1,15 +1,15 @@
-# inlinequiz.js
+# quizito.js
 
-A JavaScript library for creating quick-and-easy inline quizzes. This library assumes your questions have boolean answers (true/false, yes/no). Need something beefier? Check out [motherjones/Quizito](https://github.com/motherjones/Quizito). And oh yeah, Zero dependencies!
+A JavaScript library for creating quick-and-easy inline quizzes. This library assumes your questions have boolean answers (true/false, yes/no). Need something beefier? Check out [motherjones/newsquiz](https://github.com/motherjones/newsquiz). And oh yeah, Zero dependencies!
 
 ## Installation
 ```bash
-$ bower install inlinequiz
+$ bower install quizito
 ```
 
 In your HTML
 ```html
-<script src="bower_components/dist/inlinequiz/inlinequiz.js"></script>
+<script src="bower_components/dist/quizito/quizito.js"></script>
 ```
 
 ## Usage
@@ -25,7 +25,7 @@ var questions = [
 
 Quizito takes an array of question objects and a selector to inject the quiz into
 ```js
-var quiz = new InlineQuiz('#quiz', questions);
+var quiz = new Quizito('#quiz', questions);
 ```
 
 Told you. Easy.
