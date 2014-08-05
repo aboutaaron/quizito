@@ -123,17 +123,11 @@ quiz.watch('state', function (property, oldvalue, newvalue) {
         newvalue: the new value currently held by the property
 
     */
-    if (newvalue === 'start') {
-        /* Do something when the quiz starts*/
-    }
+    if (newvalue === 'start') { /* Do something when the quiz starts*/ }
 
-    if (newvalue === 'active') {
-        /* Do something while the quiz is active*/
-    }
+    if (newvalue === 'active') { /* Do something while the quiz is active*/ }
 
-    if (newvalue === 'finished') {
-        /* Do something when the quiz is finished */
-    }
+    if (newvalue === 'finished') { /* Do something when the quiz is finished */ }
 });
 ```
 
