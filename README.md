@@ -69,15 +69,15 @@ Don't like this format? Pass `Quizito.buildTemplate()` a string of your preferre
 
 `reset()`: Starts your quiz from the beginning
 
-`buildTemplate()`: Take a *string* representation of HTML and pass to the selector
+`buildTemplate()`: Take a *string* representation of HTML and appends it to the defined selector
 
 
 ## Events
 ```js
-// Event for when a user selects an answer
+// Event for when a user clicks a radio button to select an answer
 quiz.on('change', function (event) {});
 
-// Event for when the user clicks the button to go to the next answer
+// Event for when the user clicks the button to go to the next question
 quiz.on('submit', function (event) {});
 
 // Define your own
