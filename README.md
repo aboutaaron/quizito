@@ -94,16 +94,22 @@ quiz.on('someEventName', function (event) { /* your custom event here */ })
 
 So, if you wanted to do something based on the various quiz states, you'd write the following:
 ```js
-quiz.watch('state', function () {
-    if (this.state === 'start') {
+quiz.watch('state', function (property, oldvalue, newvalue) {
+    /*
+        property: the property being watched. In this case *state*
+        oldvalue: the previous value held by the property
+        newvalue: the new value currently held by the property
+
+    */
+    if (newvalue === 'start') {
         /* Do something when the quiz starts*/
     }
 
-    if (this.state === 'active') {
+    if (newvalue === 'active') {
         /* Do something while the quiz is active*/
     }
 
-    if (this.state === 'finished') {
+    if (newvalue === 'finished') {
         /* Do something when the quiz is finished */
     }
 });
