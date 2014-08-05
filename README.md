@@ -49,6 +49,15 @@ The default HTML looks like this:
     </div>
 </div>
 ```
+### Templates
+`Quizito.Template` holds the HTML templates for each state. The defaults are set to `start`, `active` and `finished`. If you don't like defaults? Override the template values with the your own. Just be sure that you have the following HTML:
+
+```
+.quiz-question: The element that contains the questions
+.quiz-start: the element clicked to start the quiz
+.quiz-submit: The element clicked to go to the next question
+.quiz-try: The element clicked to restart the quiz. This should only be located in `Quizito.Template.finished`
+```
 
 Don't like this format? Pass `Quizito.buildTemplate()` a string of your preferred HTML and go from there (though you'll definitely need to modify the library a bit. Working on making this a little easier in the future).
 
@@ -64,12 +73,20 @@ Don't like this format? Pass `Quizito.buildTemplate()` a string of your preferre
 
 `state`: 'start', 'active', 'finished'. Tells you which part of the quiz you're in.
 
+`Template`: Object that holds the corresponding HTML for each state
+
 #### functions
+These functions handle the internals of the library. While you probably shouldn't modify these, it's worth explaining what they do incase you'd like to.
+
 `init()`: boot your quiz
 
-`reset()`: Starts your quiz from the beginning
+`_buildTemplate(state)`: Take a the state name as a string and render the corresponding HTML stored in `Quizito.Template.stateName`.
 
-`buildTemplate()`: Take a *string* representation of HTML and appends it to the defined selector
+`start()`: Function called to start the quiz
+
+`active()`: Function called to render quiz questions and handle question cycling
+
+`finished()`: Function called to display results and do any leftover logic
 
 
 ## Events

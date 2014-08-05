@@ -1,6 +1,6 @@
 {
   "name": "quizito",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Create easy, inline, binary based quizzes for your website",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
