@@ -28,7 +28,10 @@ Quizito.prototype = {
         that._buildTemplate('start');
 
         // Start the active section when a user clicks the start button
-        that.on('start', function () { that.active(); });
+        that.on('start', function (event) {
+            event.preventDefault();
+            that.active();
+        });
     },
     active: function () {
         var that = this;
