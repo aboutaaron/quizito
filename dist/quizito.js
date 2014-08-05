@@ -1,6 +1,83 @@
 /*! quizito - v0.0.1 - 2014-08-04
 * Copyright (c) 2014 ; Licensed MIT */
-function Quizito (container, questions) {
+if (!Array.prototype.filter)
+{
+  Array.prototype.filter = function(fun /*, thisArg */)
+  {
+    "use strict";
+
+    if (this === void 0 || this === null)
+      throw new TypeError();
+
+    var t = Object(this);
+    var len = t.length >>> 0;
+    if (typeof fun !== "function")
+      throw new TypeError();
+
+    var res = [];
+    var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
+    for (var i = 0; i < len; i++)
+    {
+      if (i in t)
+      {
+        var val = t[i];
+
+        // NOTE: Technically this should Object.defineProperty at
+        //       the next index, as push can be affected by
+        //       properties on Object.prototype and Array.prototype.
+        //       But that method's new, and collisions should be
+        //       rare, so use the more-compatible alternative.
+        if (fun.call(thisArg, val, i, t))
+          res.push(val);
+      }
+    }
+
+    return res;
+  };
+};// object.watch
+if (!Object.prototype.watch) {
+    Object.defineProperty(Object.prototype, "watch", {
+          enumerable: false
+        , configurable: true
+        , writable: false
+        , value: function (prop, handler) {
+            var
+              oldval = this[prop]
+            , newval = oldval
+            , getter = function () {
+                return newval;
+            }
+            , setter = function (val) {
+                oldval = newval;
+                return newval = handler.call(this, prop, oldval, val);
+            }
+            ;
+
+            if (delete this[prop]) { // can't watch constants
+                Object.defineProperty(this, prop, {
+                      get: getter
+                    , set: setter
+                    , enumerable: true
+                    , configurable: true
+                });
+            }
+        }
+    });
+}
+
+// object.unwatch
+if (!Object.prototype.unwatch) {
+    Object.defineProperty(Object.prototype, "unwatch", {
+          enumerable: false
+        , configurable: true
+        , writable: false
+        , value: function (prop) {
+            var val = this[prop];
+            delete this[prop]; // remove accessors
+            this[prop] = val;
+        }
+    });
+};function Quizito (container, questions) {
     'use strict';
 
     this.container = document.querySelector(container);

@@ -22,10 +22,11 @@ module.exports = function (grunt) {
         concat: {
             options: {
                 banner: '<%= banner %>',
-                stripBanners: true
+                stripBanners: true,
+                separator: ';'
             },
             dist: {
-                src: ['src/<%= pkg.name %>.js'],
+                src: ['lib/*.js', 'src/<%= pkg.name %>.js'],
                 dest: 'dist/<%= pkg.name %>.js'
             }
         },
@@ -97,7 +98,8 @@ module.exports = function (grunt) {
     });
 
     // Default task.
-    grunt.registerTask('default', ['jshint', 'connect', 'clean', 'concat', 'uglify']);
+    grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify']);
+    grunt.registerTask('build', ['jshint', 'clean', 'concat', 'uglify']);
     grunt.registerTask('serve', ['connect', 'watch']);
     grunt.registerTask('test', ['jshint', 'connect']);
 };

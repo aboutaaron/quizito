@@ -109,7 +109,7 @@ quiz.watch('state', function () {
 });
 ```
 
-You can also watch `Quizito.count` whuch tracks what question is active
+You can also watch `Quizito.count` which tracks what question is active
 ```js
 quiz.watch('count', function () { /* Do something when count changes */ });
 ```

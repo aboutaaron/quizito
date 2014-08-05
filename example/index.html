@@ -50,9 +50,7 @@
 
     </div><!-- /.container -->
 
-    <script src="../lib/array.filter.polyfill.js"></script>
-    <script src="../lib/object.watch.polyfill.js"></script>
-    <script src="../src/newsquiz.js"></script>
+    <script src="../dist/quizito.min.js"></script>
 
     <script>
       var questions = [
@@ -60,7 +58,7 @@
         { question: 'Do you like potato chips?' },
         { question: 'Would you vote to split California into six states?' }
       ],
-      quiz = new NewsQuiz('#quiz', questions);
+      quiz = new Quizito('#quiz', questions);
     </script>
   </body>
 </html>
