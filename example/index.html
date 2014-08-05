@@ -62,8 +62,10 @@
       ],
       quiz = new Quizito('#quiz', questions);
 
-      quiz.watch('state', function () {
-        console.log(this.state);
+      quiz.watch('state', function (property, oldval, newval) {
+        if (newval === 'finished') {
+          alert('All done!');
+        }
       });
     </script>
   </body>
