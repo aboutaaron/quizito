@@ -9,6 +9,11 @@ function Quizito (container, questions) {
 }
 
 Quizito.prototype = {
+    Template: {
+        start: '<div class="quiz-body"><h2>This is a quiz</h2><a href="#">Start</a></div>',
+        active: '<div class="quiz-body"><div class="quiz-question">Question></div><div class="quiz-answer"><input type="radio" name="quiz-radio" id="quiz-yes" value="yes"> Yes <input type="radio" name="quiz-radio" id="quiz-no" value="no"> No </div> <div class="quiz-controls"> <a href="#" class="quiz-submit">submit</a> </div> </div>',
+        finished: '<div class="quiz-body" id="results"><div class="quiz-question">Done!</div><div class="quiz-results-body"></div><a href="#" class="quiz-retry">Try again</a></div>'
+    },
     init: function () {
         var that = this;
 
@@ -19,7 +24,7 @@ Quizito.prototype = {
         that.answers = [];
 
         // Load Template
-        that.buildTemplate('<div class="quiz-body"><div class="quiz-question">Question></div><div class="quiz-answer"><input type="radio" name="quiz-radio" id="quiz-yes" value="yes"> Yes <input type="radio" name="quiz-radio" id="quiz-no" value="no"> No </div> <div class="quiz-controls"> <a href="#" class="quiz-submit">submit</a> </div> </div>');
+        that.buildTemplate('active');
 
         // Cycle through questions
         that.cycle();
@@ -38,7 +43,7 @@ Quizito.prototype = {
 
         // Watch events that listen to property changes
         that.watch('count', function (id, oldval, newval) { return newval; });
-        that.watch('state', function (id, oldval, newval) { return newval; });
+        that.watch('state', function (id, oldval, newval) { console.log(newval); });
     },
     reset: function () {
         var that = this,
@@ -50,8 +55,8 @@ Quizito.prototype = {
             that.init();
         });
     },
-    buildTemplate: function (string) {
-        this.container.innerHTML = string;
+    buildTemplate: function (state) {
+        this.container.innerHTML = this.Template[state];
     },
     _loadQuestion: function (obj) {
         var questionContainer = this.container.querySelector('.quiz-question');
@@ -69,7 +74,7 @@ Quizito.prototype = {
         } else {
             // Load results page
             that.state = 'finished';
-            that.buildTemplate('<div class="quiz-body" id="results"><div class="quiz-question">Done!</div><div class="quiz-results-body"></div><a href="#" class="quiz-retry">Try again</a></div>');
+            that.buildTemplate('finished');
 
             that.reset();
         }
