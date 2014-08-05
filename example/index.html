@@ -50,7 +50,9 @@
 
     </div><!-- /.container -->
 
-    <script src="../dist/quizito.min.js"></script>
+    <script src="../lib/array.filter.polyfill.js"></script>
+    <script src="../lib/object.watch.polyfill.js"></script>
+    <script src="../src/quizito.js"></script>
 
     <script>
       var questions = [
@@ -59,6 +61,10 @@
         { question: 'Would you vote to split California into six states?' }
       ],
       quiz = new Quizito('#quiz', questions);
+
+      quiz.watch('state', function () {
+        console.log(this.state);
+      });
     </script>
   </body>
 </html>
