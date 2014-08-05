@@ -10,25 +10,36 @@ function Quizito (container, questions) {
 
 Quizito.prototype = {
     Template: {
-        start: '<div class="quiz-body"><h2>This is a quiz</h2><a href="#">Start</a></div>',
+        start: '<div class="quiz-body"><h3>Some quiz about bananas</h3><a href="#" class="quiz-start">Start</a></div>',
         active: '<div class="quiz-body"><div class="quiz-question">Question></div><div class="quiz-answer"><input type="radio" name="quiz-radio" id="quiz-yes" value="yes"> Yes <input type="radio" name="quiz-radio" id="quiz-no" value="no"> No </div> <div class="quiz-controls"> <a href="#" class="quiz-submit">submit</a> </div> </div>',
         finished: '<div class="quiz-body" id="results"><div class="quiz-question">Done!</div><div class="quiz-results-body"></div><a href="#" class="quiz-retry">Try again</a></div>'
     },
     init: function () {
+        this.count = 0;
+        this.answers = [];
+
+        // call the first scene
+        this.start();
+
+    },
+    start: function () {
         var that = this;
 
         that.state = 'start';
-        that.count = 0;
-        // Select the container for the quiz
-        // answers submitted by user
-        that.answers = [];
-
         // Load Template
-        that.buildTemplate('active');
+        that._buildTemplate('start');
 
+        // Start the active section when a user clicks the start button
+        that.on('start', function () { that.active(); });
+    },
+    active: function () {
+        var that = this;
+        // Set state
+        that.state = 'active';
+        // Set template
+        that._buildTemplate('active');
         // Cycle through questions
-        that.cycle();
-
+        that._cycle();
         // Attach default event listeners
         that.on('change', function () {
             // Push values to array
@@ -38,16 +49,15 @@ Quizito.prototype = {
         // Cycle to the next question when a user submits an answer
         that.on('submit', function (event) {
             event.preventDefault();
-            that.cycle();
+            that._cycle();
         });
-
-        // Watch events that listen to property changes
-        that.watch('count', function (id, oldval, newval) { return newval; });
-        that.watch('state', function (id, oldval, newval) { console.log(newval); });
     },
-    reset: function () {
+    finished: function () {
+        this._buildTemplate('finished');
+
         var that = this,
             btn = that.container.querySelector('.quiz-retry');
+        that.state = 'finished';
 
         btn.addEventListener('click', function (event) {
             event.preventDefault();
@@ -55,28 +65,24 @@ Quizito.prototype = {
             that.init();
         });
     },
-    buildTemplate: function (state) {
+    _buildTemplate: function (state) {
         this.container.innerHTML = this.Template[state];
     },
     _loadQuestion: function (obj) {
         var questionContainer = this.container.querySelector('.quiz-question');
         questionContainer.innerHTML = obj.question;
     },
-    cycle: function () {
+    _cycle: function () {
         var that = this;
 
         if (that.count < that.questions.length) {
             that._loadQuestion(that.questions[that.count]);
             that.count++;
-            that.state = 'active';
             that._clearRadio();
 
         } else {
             // Load results page
-            that.state = 'finished';
-            that.buildTemplate('finished');
-
-            that.reset();
+            that.finished();
         }
     },
     _clearRadio: function () {
@@ -110,7 +116,13 @@ Quizito.prototype = {
             );
         }
 
-        // Event for when button is change
+        // Event for a user clicks the start quiz button
+        if (eventName === 'start') {
+            var start  = this.container.querySelector('.quiz-start');
+            start.addEventListener('click', eventHandler);
+        }
+
+        // Event for when a user submits and answer
         if (eventName === 'submit') {
             var submit = this.container.querySelector('.quiz-submit');
             submit.addEventListener('click', eventHandler);
