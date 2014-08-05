@@ -1,3 +1,5 @@
+/*! newsquiz - v0.0.1 - 2014-08-04
+* Copyright (c) 2014 ; Licensed MIT */
 function NewsQuiz (container, questions) {
     'use strict';
 

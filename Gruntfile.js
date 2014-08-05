@@ -53,13 +53,13 @@ module.exports = function (grunt) {
                     jshintrc: 'src/.jshintrc'
                 },
                 src: ['src/**/*.js']
-            },
-            test: {
-                options: {
-                    jshintrc: 'test/.jshintrc'
-                },
-                src: ['test/**/*.js']
             }
+            // test: {
+            //     options: {
+            //         jshintrc: 'test/.jshintrc'
+            //     },
+            //     src: ['test/**/*.js']
+            // }
         },
         watch: {
             gruntfile: {

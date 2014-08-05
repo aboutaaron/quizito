@@ -1,15 +1,15 @@
-# newsquiz.js
+# inlinequiz.js
 
-A JavaScript library for creating quick-and-easy inline quizzes. This library assumes your questions have boolean answers (true/false, yes/no). Need something beefier? Check out [motherjones/newsquiz](https://github.com/motherjones/newsquiz). And oh yeah, Zero dependencies!
+A JavaScript library for creating quick-and-easy inline quizzes. This library assumes your questions have boolean answers (true/false, yes/no). Need something beefier? Check out [motherjones/Quizito](https://github.com/motherjones/Quizito). And oh yeah, Zero dependencies!
 
 ## Installation
 ```bash
-$ bower install newsquiz
+$ bower install inlinequiz
 ```
 
 In your HTML
 ```html
-<script src="bower_components/newsquiz/newsquiz.js"></script>
+<script src="bower_components/dist/inlinequiz/inlinequiz.js"></script>
 ```
 
 ## Usage
@@ -23,16 +23,16 @@ var questions = [
 ]
 ```
 
-Newsquiz takes an array of question objects and a selector to inject the quiz into
+Quizito takes an array of question objects and a selector to inject the quiz into
 ```js
-var quiz = new NewsQuiz('#quiz', questions);
+var quiz = new InlineQuiz('#quiz', questions);
 ```
 
 Told you. Easy.
 
 ## Customization
 
-`newsquiz.js` comes with zero css. It's up to you to implement what the quiz will actually look like.
+`Quizito.js` comes with zero css. It's up to you to implement what the quiz will actually look like.
 
 The default HTML looks like this:
 ```html
@@ -50,7 +50,7 @@ The default HTML looks like this:
 </div>
 ```
 
-Don't like this format? Pass `NewsQuiz.buildTemplate()` a string of your preferred HTML and go from there (though you'll definitely need to modify the library a bit. Working on making this a little easier in the future).
+Don't like this format? Pass `Quizito.buildTemplate()` a string of your preferred HTML and go from there (though you'll definitely need to modify the library a bit. Working on making this a little easier in the future).
 
 ## API
 #### properties
@@ -85,7 +85,7 @@ quiz.on('someEventName', function (event) { /* your custom event here */ })
 ```
 
 ### Watching for state
-`newsquiz.js` uses an implementation of [Object.watch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/watch) to monitor various object properties. This is primarily used to watch the "state" of the quiz. `NewsQuiz.state` will hold the following values:
+`Quizito.js` uses an implementation of [Object.watch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/watch) to monitor various object properties. This is primarily used to watch the "state" of the quiz. `Quizito.state` will hold the following values:
 
 - **'start'**: for when the quiz is first initialized
 - **'active'**: state for when the quiz is being taken
@@ -109,13 +109,13 @@ quiz.watch('state', function () {
 });
 ```
 
-You can also watch `NewsQuiz.count` whuch tracks what question is active
+You can also watch `Quizito.count` whuch tracks what question is active
 ```js
 quiz.watch('count', function () { /* Do something when count changes */ });
 ```
 
 ## Contributing
-Want to add or feature of need something fixed? Open an [issue](https://github.com/cirlabs/newsquiz/issues).
+Want to add or feature of need something fixed? Open an [issue](https://github.com/cirlabs/Quizito/issues).
 
 ## License
 The MIT License (MIT)
