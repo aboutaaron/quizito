@@ -1,4 +1,4 @@
-/*! quizito - v0.0.2 - 2014-08-05
+/*! quizito - v0.0.2 - 2014-09-03
 * Copyright (c) 2014 ; Licensed MIT */
 if (!Array.prototype.filter)
 {
@@ -88,7 +88,26 @@ if (!Object.prototype.unwatch) {
 Quizito.prototype = {
     Template: {
         start: '<div class="quiz-body"><h3>Some quiz about bananas</h3><a href="#" class="quiz-start">Start</a></div>',
-        active: '<div class="quiz-body"><div class="quiz-question">Question></div><div class="quiz-answer"><input type="radio" name="quiz-radio" id="quiz-yes" value="yes"> Yes <input type="radio" name="quiz-radio" id="quiz-no" value="no"> No </div> <div class="quiz-controls"> <a href="#" class="quiz-submit">submit</a> </div> </div>',
+        active: '<div class="quiz-body">'+
+            '<div class="quiz-question">Question></div>'+
+            '<div class="quiz-answer">'+
+              '<div class="radio">'+
+                '<label>'+
+                  '<input type="radio" name="quiz-radio" id="quiz-yes" value="yes">'+
+                  'Yes'+
+                '</label>'+
+              '</div>'+
+              '<div class="radio">'+
+                '<label>'+
+                  '<input type="radio" name="quiz-radio" id="quiz-no" value="no">'+
+                  'No'+
+                '</label>'+
+              '</div>'+
+            '</div>'+
+            '<div class="quiz-controls">'+
+              '<a href="#" class="quiz-submit">submit</a>'+
+            '</div>'+
+          '</div>',
         finished: '<div class="quiz-body" id="results"><div class="quiz-question">Done!</div><div class="quiz-results-body"></div><a href="#" class="quiz-retry">Try again</a></div>'
     },
     init: function () {
