@@ -62,13 +62,18 @@ Quizito.prototype = {
         that._cycle();
         // Attach default event listeners
         that.on('change', function () {
-            // Push values to array
-            that.answers.push( {count: that.count, question: that.questions[that.count - 1].question, answer: this.value} );
         });
 
         // Cycle to the next question when a user submits an answer
         that.on('submit', function (event) {
             event.preventDefault();
+
+            that.answers.push({
+                count: that.count,
+                question: that.questions[that.count - 1].question,
+                answer: this.value
+            });
+
             that._cycle();
         });
     },
