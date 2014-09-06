@@ -113,6 +113,7 @@ Quizito.prototype = {
     init: function () {
         this.count = 0;
         this.answers = [];
+        this.valid = false;
 
         // call the first scene
         this.start();
@@ -139,21 +140,28 @@ Quizito.prototype = {
         that._buildTemplate('active');
         // Cycle through questions
         that._cycle();
-        // Attach default event listeners
+        // Validate on answer change
         that.on('change', function () {
+            that._validate();
         });
 
         // Cycle to the next question when a user submits an answer
         that.on('submit', function (event) {
             event.preventDefault();
 
-            that.answers.push({
-                count: that.count,
-                question: that.questions[that.count - 1].question,
-                answer: this.value
-            });
+            // Check Validity
 
-            that._cycle();
+            if (that.valid) {
+                that.answers.push({
+                    count: that.count,
+                    question: that.questions[that.count - 1].question,
+                    answer: this.value
+                });
+
+                that._cycle();
+            } else {
+                alert('Please select a value before continuing');
+            }
         });
     },
     finished: function () {
@@ -178,6 +186,9 @@ Quizito.prototype = {
     },
     _cycle: function () {
         var that = this;
+
+        // reset validity
+        that.valid = false;
 
         if (that.count < that.questions.length) {
             that._loadQuestion(that.questions[that.count]);
@@ -206,6 +217,17 @@ Quizito.prototype = {
 
         return results;
     },
+    _validate: function() {
+        // Validate radio button is selected on submit
+        var that = this,
+            inputs = that.container.querySelectorAll('input');
+
+        // Iterate over radio inputs
+        // If checked, assign App.radio
+        [].forEach.call(inputs, function (radio) {
+            if (radio.type === 'radio' && radio.checked) { that.valid = true; }
+        });
+    },
     on: function (eventName, eventHandler) {
         // Event for when radio buttons change
         if (eventName === 'change') {
@@ -222,7 +244,7 @@ Quizito.prototype = {
 
         // Event for a user clicks the start quiz button
         if (eventName === 'start') {
-            var start  = this.container.querySelector('.quiz-start');
+            var start = this.container.querySelector('.quiz-start');
             start.addEventListener('click', eventHandler);
         }
 
