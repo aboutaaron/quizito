@@ -77,7 +77,7 @@ Quizito.prototype = {
                 that.answers.push({
                     count: that.count,
                     question: that.questions[that.count - 1].question,
-                    answer: this.value
+                    answer: that._filterForSelected( that.container.querySelectorAll('input') )
                 });
 
                 that._cycle();
@@ -121,6 +121,14 @@ Quizito.prototype = {
             // Load results page
             that.finished();
         }
+    },
+    _filterForSelected: function (querySelectorArray) {
+        var selected = [].filter.call(
+            querySelectorArray,
+            function (radio) { return radio.checked === true; }
+        );
+
+        return selected[0].value;
     },
     _clearRadio: function () {
         var radios = this.container.querySelectorAll('input');
