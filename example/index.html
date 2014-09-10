@@ -56,9 +56,9 @@
 
     <script>
       var questions = [
-        { question: 'Have you ever been Emeryville?' },
-        { question: 'Do you like potato chips?' },
-        { question: 'Would you vote to split California into six states?' }
+        { question: 'Have you ever been Emeryville?', meta: { some_val: 'a' } },
+        { question: 'Do you like potato chips?', meta: { some_val: 'b' } },
+        { question: 'Would you vote to split California into six states?', meta: { some_val: 'c' } }
       ],
       quiz = new Quizito('#quiz', questions);
 

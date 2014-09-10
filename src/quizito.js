@@ -77,7 +77,8 @@ Quizito.prototype = {
                 that.answers.push({
                     count: that.count,
                     question: that.questions[that.count - 1].question,
-                    answer: that._filterForSelected( that.container.querySelectorAll('input') )
+                    answer: that._filterForSelected( that.container.querySelectorAll('input') ),
+                    object: that.questions[that.count - 1]
                 });
 
                 that._cycle();
