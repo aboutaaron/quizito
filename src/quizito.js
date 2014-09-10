@@ -1,4 +1,4 @@
-/* global alert: true */
+/* global alert: true, watch: true */
 function Quizito (container, questions) {
     'use strict';
 
@@ -183,5 +183,10 @@ Quizito.prototype = {
             var submit = this.container.querySelector('.quiz-submit');
             submit.addEventListener('click', eventHandler);
         }
+    },
+    watch: function (prop, eventHandler) {
+        // A wrapper around the watch global
+        var that = this;
+        watch(that, prop, eventHandler);
     }
 };

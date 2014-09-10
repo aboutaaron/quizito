@@ -17,7 +17,12 @@ module.exports = function (grunt) {
             ' Licensed MIT */\n',
         // Task configuration.
         clean: {
-            files: ['dist']
+            files: ['dist', 'lib/_bower.js']
+        },
+        bower_concat: {
+            all: {
+                dest: 'lib/_bower.js',
+            }
         },
         concat: {
             options: {
@@ -99,7 +104,7 @@ module.exports = function (grunt) {
 
     // Default task.
     grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify']);
-    grunt.registerTask('build', ['jshint', 'clean', 'concat', 'uglify']);
+    grunt.registerTask('build', ['jshint', 'clean', 'bower_concat','concat', 'uglify']);
     grunt.registerTask('serve', ['connect', 'watch']);
     grunt.registerTask('test', ['jshint', 'connect']);
 };

@@ -51,7 +51,7 @@
     </div><!-- /.container -->
 
     <script src="../lib/array.filter.polyfill.js"></script>
-    <script src="../lib/object.watch.polyfill.js"></script>
+    <script src="../bower_components/watch/src/watch.js"></script>
     <script src="../src/quizito.js"></script>
 
     <script>
@@ -64,10 +64,8 @@
 
       quiz.init();
 
-      quiz.watch('state', function (property, oldval, newval) {
-        if (newval === 'finished') {
-          alert('All done!');
-        }
+      quiz.watch('answers', function (prop, action, newval, oldval) {
+        console.log(quiz.answers);
       });
     </script>
   </body>

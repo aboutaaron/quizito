@@ -1,6 +1,12 @@
 # quizito.js
 
-A JavaScript library for creating quick-and-easy inline quizzes. This library assumes your questions have boolean answers (true/false, yes/no). Need something beefier? Check out [motherjones/newsquiz](https://github.com/motherjones/newsquiz). And oh yeah, Zero dependencies!
+A JavaScript library for creating quick-and-easy inline quizzes. This library assumes your questions have boolean answers (true/false, yes/no). Need something beefier? Check out [motherjones/newsquiz](https://github.com/motherjones/newsquiz).
+
+## Dependencies
+quizito.js depends on:
+
+- ~~[Mustache.js](https://github.com/janl/mustache.js)~~
+- [Watch.js](https://github.com/melanke/Watch.JS)
 
 ## Installation
 ```bash
@@ -41,17 +47,25 @@ Told you. Easy.
 
 The default HTML looks like this:
 ```html
-<div id="quiz">
-    <div class="quiz-body">
-        <div class="quiz-question">Quiz question?</div>
-        <div class="quiz-answer">
-            <input type="radio" name="quiz-radio" id="quiz-yes" value="yes"> Yes
-            <input type="radio" name="quiz-radio" id="quiz-no" value="no"> No
-        </div>
-        <div class="quiz-controls">
-            <a href="#" class="quiz-submit">submit</a>
-        </div>
-    </div>
+<div class="quiz-body">
+  <div class="quiz-question">Question></div>
+    <div class="quiz-answer">
+      <div class="radio">
+        <label>
+          <input type="radio" name="quiz-radio" id="quiz-yes" value="yes">
+          Yes
+        </label>
+      </div>
+      <div class="radio">
+        <label>
+          <input type="radio" name="quiz-radio" id="quiz-no" value="no">
+          No
+        </label>
+      </div>
+  </div>
+  <div class="quiz-controls">
+    <a href="#" class="quiz-submit">submit</a>
+  </div>
 </div>
 ```
 ### Templates
@@ -106,8 +120,8 @@ quiz.on('submit', function (event) {});
 quiz.on('someEventName', function (event) { /* your custom event here */ })
 ```
 
-### Watching for state
-`Quizito.js` uses an implementation of [Object.watch](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/watch) to monitor various object properties. This is primarily used to watch the "state" of the quiz. `Quizito.state` will hold the following values:
+### Watching Object values
+`Quizito.js` uses [Watch.js](https://github.com/melanke/Watch.JS) to monitor various object properties. For example, you may want to watch the "state" of the quiz. `Quizito.state` holds the following values:
 
 - **'start'**: for when the quiz is first initialized
 - **'active'**: state for when the quiz is being taken
@@ -116,9 +130,10 @@ quiz.on('someEventName', function (event) { /* your custom event here */ })
 
 So, if you wanted to do something based on the various quiz states, you'd write the following:
 ```js
-quiz.watch('state', function (property, oldvalue, newvalue) {
+quiz.watch('state', function (property, action, oldvalue, newvalue) {
     /*
         property: the property being watched. In this case *state*
+        action: the action that triggered the watch event to fire
         oldvalue: the previous value held by the property
         newvalue: the new value currently held by the property
 
